@@ -11,6 +11,8 @@
 
 #include <iostream>
 
+
+
 using namespace std;
 
 int main()
@@ -37,6 +39,19 @@ int main()
 
 	//establecemos la ventana como contexto
 	glfwMakeContextCurrent(window);
+
+	//una vez establecido el contexto
+	//se activan las funciones "modernas" (gpu)
+	glewExperimental = true;
+
+	GLenum errores = glewInit();
+	if (errores != GLEW_OK) {
+		glewGetErrorString(errores);
+	}
+
+	const GLubyte* versionGL = glGetString(GL_VERSION);
+	cout << "Version openGL" << versionGL;
+
 	//ciclo de dibujo (Draw loop)
 	while (!glfwWindowShouldClose(window)) {
 		//Establecer region de dibujo
