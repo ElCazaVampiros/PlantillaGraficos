@@ -15,6 +15,91 @@
 
 using namespace std;
 
+void dibujarPoligono() {
+	glBegin(GL_POLYGON);
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.5f, 0.0f);
+	glVertex3f(0.2f, 0.3f, 0.0f);
+
+	glVertex3f(0.6f, -0.4f, 0.0f);
+	glVertex3f(0.6f, -0.6f, 0.0f);
+
+	glEnd();
+}
+
+
+
+void dibujarTrianguloContinuo() {
+	glBegin(GL_TRIANGLE_STRIP);
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.1f, 0.1f, 0.0f);
+	glVertex3f(0.2f, 0.0f, 0.0f);
+
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glVertex3f(0.2f, 0.15f, 0.0f);
+
+	glEnd();
+}
+
+
+
+void dibujarLinearContinua() {
+	glBegin(GL_LINE_STRIP);
+
+	glColor3f(0.1f, 0.3f, 0.75f);
+
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 0.2f, 0.0f);
+	glVertex3f(0.4f, 0.2f, 0.0f);
+	glVertex3f(0.2f, 0.3f, 0.0f);
+
+	glEnd();
+}
+
+
+void dibujarLineas() {
+	glBegin(GL_LINES);
+	glColor3f(1.0f, 0.4f, 0.6f);
+	glVertex3f(0.0f, 0.0f, 0.0f);
+	glVertex3f(0.2f, -0.4f, 0.0f);
+
+	glVertex3f(-0.3f, 0.1f, 0.0f);
+	glVertex3f(-0.3f, -0.4f, 0.0f);
+
+	glEnd();
+}
+
+void dibujarTriangulos() {
+	//establecemos tipo de primitiva
+	glBegin(GL_TRIANGLES);
+
+	//establecemos color
+	glColor3f(1.0f, 0.0f, 0.0f);
+
+	//establecemos verticees
+
+	glVertex3f(0.7f, 0.7f, 0.0f);
+	glVertex3f(-0.7, -0.7f, 0.0f);
+	glVertex3f(0.7f, -0.7f, 0.0f);
+
+	glVertex3f(-0.7f, -0.7f, 0.0f);
+	glVertex3f(0.7, 0.7f, 0.0f);
+	glVertex3f(-0.7f, 0.7f, 0.0f);
+
+
+	glEnd();
+}
+
+void dibujar() {
+	dibujarPoligono();
+}
+
 int main()
 {
     //declarar una ventana
@@ -28,7 +113,7 @@ int main()
 	//Si se pudo iniciar GLFW
 	//inicializar la ventana
 	window =
-		glfwCreateWindow(800, 600, "Ventana",
+		glfwCreateWindow(600, 600, "Ventana",
 			NULL, NULL);
 	//Si no se pudo crear la ventana
 	//Terminamos ejecucion
@@ -55,7 +140,7 @@ int main()
 	//ciclo de dibujo (Draw loop)
 	while (!glfwWindowShouldClose(window)) {
 		//Establecer region de dibujo
-		glViewport(0, 0, 800, 600);
+		glViewport(0, 0, 600, 600);
 		//establecemos el color de borrado
 		glClearColor(1, 0.2, 0.5, 1);
 		//borrar!
@@ -63,7 +148,9 @@ int main()
 			GL_DEPTH_BUFFER_BIT);
 
 		//Actualizar valores y dibujar
+		dibujar();
 
+		glfwPollEvents();
 		glfwSwapBuffers(window);
 	}
 	//despues del ciclo de dibujo
